@@ -13,11 +13,8 @@ target/
 .springBeans
 .sts4-cache
 
-#Arquivos Ignorados
-.mvn/
-.target/
-mvnw
-mvnw.cmd
+
+
 
 ### IntelliJ IDEA ###
 .idea
