@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <title>Document</title>
+</head>
+<body>
+
+   <main>
+  
+    <div id="container"class="container">
+        <div id="icon">
+        <img src="img/button.png" alt="" width="50px">
+        </div>
+        <h1>Easy Consulter</h1>
+    <div class="div-main">
+        <form action="loginEasy" method="POST">
+            <!-- Ajuste de endpoint -->
+            <div>
+            <h2>Acesse o sistema</h2>
+             </div>
+
+             <div>
+            <label for="">Login</label>
+            <input type="text" placeholder="example@123" required>
+            </div>
+            <div>
+            <label for="">Senha</label>
+            <input type="text" placeholder="123456" required>
+            </div>
+           
+           <a th:href="@{/verifique}">
+            <input type="button" value="Cadastrar" required>
+           </a>
+            
+           
+           
+        </form>
+        <p><a th:href="@{example}">Ainda não possuo cadastro</a></p>
+
+    </div>
+    </div>
+   </main>
+   <script src="script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <title>Cadastro Usuario</title>
+</head>
+
+<body>
+
+    <main>
+
+        <div id="container" class="container">
+            <div id="icon">
+                <img src="img/button.png" alt="" width="50px">
+            </div>
+            <h1>Easy Consulter</h1>
+            <div class="div-main">
+                <!-- Thymeleaf started -->
+                <form action="CadastroEasy" method="post" th:object="${user}">
+
+                    <h2>Faça seu cadastro</h2>
+
+                    <div>
+                        <label for="nome">Seu nome</label>
+                        <input type="text" placeholder="name" th:field="*{nome}" required>
+                    </div>
+
+                    <div>
+                        <label for="usuario">Nome de usuario</label>
+                        <input type="text" placeholder="name user" th:field="*{usuario}" required>
+                    </div>
+
+                    <div>
+                        <label for="data_nascimento">Data de nascimento</label>
+                        <input type="date" placeholder="1999/12/12" th:field="*{data_nascimento}" required>
+                    </div>
+
+                    <div>
+                        <label for="senha">senha usuario</label>
+                        <input type="number" placeholder="123456" th:field="*{senha}"  required>
+                       
+                    </div>
+                    <div>
+                        <label for="confirmeSenha">Confirme a senha</label>
+                        <input type="number" placeholder="123456" th:field="*{confirmeSenha}" required>
+                    </div>
+               
+                   
+                        <input type="submit" value="Cadastrar">
+                    
+
+                    <p><a href="login.html">Ja possuo cadastro</a></p>
+                </form>
+
+            </div>
+        </div>
+    </main>
+    <script src="script/script.js"></script>
+</body>
+
+</html>
