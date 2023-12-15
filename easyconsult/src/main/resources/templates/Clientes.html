@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <title>Dashboard page</title>
+    <style>
+        a{
+            color: white;
+            font-size: 20px;
+            font-family: "Quicksand",sans-serif;
+            text-decoration: none;
+
+        }a:hover{
+            color: coral;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <nav>
+            <ul>
+                
+                <li><img src="img/user.png"    alt=""><a th:href="@{clienteToLogin}">Login</a></li>
+                <li><img src="img/cadastro.png" alt=""><a th:href="@{clienteToCadastro}">Cadastre-se</a></li>
+                <li><img src="img/lista.png"     alt=""><a th:href="@{clienteToProduto}">Produto</a></li>
+                <li><img src="img/vendas.png"     alt=""><a th:href="@{clienteToVenda}">Vendas</a></li>
+
+              
+            </ul>
+        </nav>
+        <div id="logo">
+            <img  src="img/Easy.png" alt="" >
+
+        </div>
+        <div class="forms">
+         
+    <form class="form-horizontal" th:object="${cliente}" th:action="@{/addcliente}" method="POST" style="margin: 10px">
+      
+        <div>
+            <label for="nome">Nome do Cliente:</label>
+            <input type="text" th:field="*{nome}" id="nome" >
+            <label for="dataDeNascimento">Data de Nascimento:</label>
+            <input type="date" th:field="*{dataDeNascimento}" id="dataDeNascimento" />
+
+        </div>
+        <div>
+            <div>
+            <label for="sexo">Sexo:</label>
+            <select th:field="*{sexo}" id="sexo" >
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+            <label for="cpf">CPF:</label>
+            <input type="text" th:field="*{cpf}" id="cpf" >
+            <label for="cidade">Cidade:</label>
+            <input type="text" th:field="*{cidade}" id="cidade" >
+        </div>
+        <div>
+            
+            <label for="estados">Estados:</label>
+            <select id="uf" name="estados" th:field="*{uf}">
+                <option th:value="null" selected>Selecione a UF:</option>
+                <option th:value="AC">Acre</option>
+                <option th:value="AL">Alagoas</option>
+                <option th:value="AP">Amapá</option>
+                <option th:value="AM">Amazonas</option>
+                <option th:value="BA">Bahia</option>
+                <option th:value="CE">Ceará</option>
+                <option th:value="DF">Distrito Federal</option>
+                <option th:value="ES">Espírito Santo</option>
+                <option th:value="GO">Goiás</option>
+                <option th:value="MA">Maranhão</option>
+                <option th:value="MT">Mato Grosso</option>
+                <option th:value="MS">Mato Grosso do Sul</option>
+                <option th:value="MG">Minas Gerais</option>
+                <option th:value="PA">Pará</option>
+                <option th:value="PB">Paraíba</option>
+                <option th:value="PR">Paraná</option>
+                <option th:value="PE">Pernambuco</option>
+                <option th:value="PI">Piauí</option>
+                <option th:value="RJ">Rio de Janeiro</option>
+                <option th:value="RN">Rio Grande do Norte</option>
+                <option th:value="RS">Rio Grande do Sul</option>
+                <option th:value="RO">Rondônia</option>
+                <option th:value="RR">Roraima</option>
+                <option th:value="SC">Santa Catarina</option>
+                <option th:value="SP">São Paulo</option>
+                <option th:value="SE">Sergipe</option>
+                <option th:value="TO">Tocantins</option>
+            </select>
+        </div>
+        </div>
+        <input type="submit" value="Cadastrar Cliente">
+    </form>
+</div>
+
+<div class="container2">
+        <div class="wraper">
+            <table class="tablediv">
+            <thead>
+           
+                    <tr>
+    
+                        <th>Código do Cliente</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th>Sexo</th>
+                        <th>Cidade</th>
+                        <th>UF</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                   
+                    </tr>
+             
+                   </thead>
+                    <tbody class="tbody">
+                        <!-- Iteração sobre a lista de clientes -->
+                        <tr th:each="cliente : ${clientes}">
+                            <!-- Colunas com os dados de cada cliente -->
+                           
+                            <td th:text="${cliente.cod_cliente + 1}"></td>
+                     
+                            <td th:text="${cliente.nome}"></td>
+                            <td th:text="${cliente.cpf}"></td>
+                            <td th:text="${cliente.dataDeNascimento}"></td>
+                            <td th:text="${cliente.sexo}"></td>
+                            <td th:text="${cliente.cidade}"></td>
+                            <td th:text="${cliente.uf}"></td>
+                            <td>
+                                    <a class="btn btn-sm btn-primary"
+                                        th:href="@{/edit/{cpf}(cpf=${cliente.cpf})}"><img src="img/editar.png" alt="" width="20px"></a>
+                            </td>
+
+                            <td>
+                                    <a class="delete btn btn-sm btn-danger"
+                                        th:href="@{/delete(cpf=${cliente.cpf})}"><img src="img/excluir.png" alt="" width="20px"></a>
+                             
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+        
+        </div>
+    </div>
+
+</body>
+
+</html>

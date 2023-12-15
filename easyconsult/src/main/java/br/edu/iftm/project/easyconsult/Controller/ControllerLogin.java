@@ -11,54 +11,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import br.edu.iftm.project.easyconsult.DAO.LoginDAO;
 import br.edu.iftm.project.easyconsult.Model.User;
 
-
-
-
-
-
 @Controller
 public class ControllerLogin {
-    
-   
+
     @Autowired
     private LoginDAO loginDAO;
 
-
-   @GetMapping("/loginEasy")
-    public String home(Model model){
+    @GetMapping("/loginEasy")
+    public String home(Model model) {
         User user = new User();
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "loginEasy";
-
     }
 
-    @GetMapping("/verifique")
-    public String Auenticar(@ModelAttribute  ("user") User user, Model model){
-        if(loginDAO.VerificaSenha(user.getSenha(), user.getSenha())){
-            return "Dashboard";
+    @PostMapping("loginEasy")
+    public String Auenticar(@ModelAttribute("user") User user, Model model) {
+        if (loginDAO.SenhaMatch(user.getLogin(), user.getSenhaLogin())){
+          
+            return "redirect:/clientes";
 
-        }else{
-            model.addAttribute("erro","Senha incorreta!");
+        } else {
+            
+            model.addAttribute("erro", "Senha incorreta!");
             return "loginEasy";
-
         }
     }
 
- 
-    
-    
+    @GetMapping("/")
+    public String pageLogin() {
+        return "redirect:/loginEasy";
+    }
 
-
-    @PostMapping("example")
-    public String PageCadastro(){
+    @PostMapping("register")
+    public String PageCadastro() {
         return "CadastroEasy";
     }
-    @GetMapping("goToLogin")
-    public String PageLogin1(){
-        return "loginEasy";
+
+    @GetMapping("RedirecionarLogin")
+    public String LoginToCadastro() {
+        return "redirect:/loginEasy";
     }
-    @PostMapping("goToLogin")
-    public String PageLogin2(){
-        return "loginEasy";
-    }
+
 }

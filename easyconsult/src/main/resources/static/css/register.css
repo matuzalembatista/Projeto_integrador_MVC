@@ -1,4 +1,4 @@
-/* Estilos pagina principal */
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -9,12 +9,10 @@
 }
 
 .container {
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-
-
-
     background: url('/img/peak.gif');
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,13 +23,16 @@
 
 }
 
-.container h1 {
-    color: rgb(201, 200, 200);
-    text-align: center;
-    font-size: 50px;
-    font-family: 'Work Sans', sans-serif;
-    text-shadow: 2px 10px 4px rgba(251, 245, 245, 0.5);
-    margin-top: 30px
+#logo {
+    position: absolute;
+    left: 700px;
+    top: -150px;
+   
+}#logo img{
+   width: 500px;
+ 
+    margin: auto;
+   
 }
 
 #icon {
@@ -49,74 +50,105 @@
 }
 
 .div-main {
-    width: 500px;
-    text-align: center;
-    border-radius: 20px;;
-    height: 800px;
+    width: 400px;
+    text-align: left;
+    border-radius: 20px;
+    position: fixed;
+    left: 750px;
+    height: 680px;
     margin: auto;
     background-color: rgba(255, 255, 255, 0.145);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    margin-top: 160px;
 
-
-}.div-main form div{
-
-
-margin: 35px;
 
 }
 
-.div-main form h2 {
-    font-size: 35px;
-    font-family: 'Rubik', sans-serif;
+.div-main>form {
+    flex-direction: column;
+
+    width: 300px;
+    height: 700px;
+    margin: auto;
+
+}
+
+.div-main h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 800;
     margin-top: 10px;
-    letter-spacing: 5px;
     color: white;
 }
 
 .div-main form label {
-    font-size: 25px;
+    text-align: left;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
     color: white;
-    font-family: 'Work Sans', sans-serif;
     font-weight: 800;
 }
 
 .div-main form input {
-    padding: 15px;
+    padding-top: 5px;
+    text-align: left;
     border: transparent;
-    border-radius: 10px;
+    margin-bottom: 30px;
     font-size: 20px;
-    color: white;
     font-weight: 800;
-    background-color: rgba(121, 121, 121, 0.111);
-    text-align: center;
+    color: rgb(47, 255, 179);
+    border-bottom: 2px solid white;
+    background-color: transparent;
     cursor: pointer;
+    transition: all 0.5s;
+
 }
 
+
+
 .div-main form input:focus {
+    border-bottom: 3px solid rgb(39, 178, 15);
     outline: none;
-    caret-color: rgb(76, 50, 205);
-    background-color: rgba(121, 121, 121, 0.333);
+    background-color: transparent;
+}
+
+.div-main form input:hover {
+    border-bottom: 2px solid black;
+    outline: none;
+    padding-top: 20px;
+   
 }
 
 .div-main form input[type="submit"] {
+    text-align: center;
+   margin-left: 50px;
+    border:2px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
     transition: 0.2s;
     width: 200px;
     font-weight: 500;
     font-size: 25px;
+    background-color: transparent;
     text-shadow: 2px 5px 4px rgba(251, 245, 245, 0.5);
     cursor: pointer;
+    transition: 0.6s;
 }
 
-.div-main form input[type="button"]:active {
-    transform: scale(1.2);
+.div-main form input[type="submit"]:active {
+    transform: scale(1.1);
     color: gray;
     background-color: rgba(83, 81, 81, 0.333);
 
 }
 
-.div-main form input[type="button"]:hover {
+.div-main form input[type="submit"]:hover {
     transform: scale(1.1);
+    background-color: white;
+    color: black;
 
 
 }
@@ -138,5 +170,31 @@ a {
 
 .div-main form p,
 a:hover {
-    color: blue;
+    color: rgb(47, 255, 179);
+    text-align: center;
+}
+
+.message {
+    display: none;
+}
+
+.div-main form input[type="date"]{
+    width: 300px;
+    padding-top: 10px;
+   
+    font-family: 'Quicksand', sans-serif;
+  
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.8s;
+
+}.div-main form input[type="date"]::-webkit-calendar-picker-indicator{
+    display: none;
+}.div-main form input[type="date"]:hover{
+    padding-top: 30px;
+    border-bottom: 3px solid rgb(39, 178, 15);
 }

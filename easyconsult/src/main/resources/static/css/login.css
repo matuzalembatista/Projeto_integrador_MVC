@@ -7,6 +7,20 @@
 
 }
 
+#logo {
+    position: absolute;
+    left: 750px;
+    top: -150px;
+
+}
+
+#logo img {
+    width: 500px;
+
+    margin: auto;
+
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -49,23 +63,37 @@
 .div-main {
     text-align: center;
     border-radius: 20px;
-
+    position: fixed;
+    left: 750px;
+    top: 160px;
     width: 500px;
     height: 600px;
     margin: aUto;
     background-color: rgba(255, 255, 255, 0.145);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(3px);
 
+}
+
+.div-main form {
+    text-align: center;
+    border-radius: 20px;
+    flex-direction: column;
+    width: 280px;
+    height: 600px;
+    margin: aUto;
+    text-align: center;
+    text-align: left;
 
 }
 
 .div-main form h2 {
-    font-size: 35px;
-    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 800;
-    letter-spacing: 5px;
+    margin-top: 10px;
     color: white;
-    margin-top: 30px;
 }
 
 .div-main form div {
@@ -83,41 +111,60 @@
 }
 
 .div-main form input {
-    padding: 15px;
     border: transparent;
-    border-radius: 10px;
+    border-bottom: 2px solid white;
     font-size: 20px;
     color: white;
-    font-weight: 800;
-    background-color: rgba(121, 121, 121, 0.111);
-    text-align: center;
+    background-color: transparent;
+    text-align: left;
     cursor: pointer;
+    font-weight: 800;
+    margin-bottom: 70px;
+    transition: 0.5s;
+    color: rgb(47, 255, 179);
+    padding-top: 15px;
 }
+
+.div-main form input:hover {
+    padding-top: 30px;
+}
+
 
 .div-main form input:focus {
     outline: none;
-    caret-color: rgb(76, 50, 205);
-    background-color: rgba(121, 121, 121, 0.333);
+    border-bottom: 3px solid rgb(39, 178, 15);
+   
 }
 
-.div-main form input[type="button"] {
+.div-main form input[type="submit"] {
+    text-align: center;
+    margin-left: 50px;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px;
+
+    color: white;
     transition: 0.2s;
     width: 200px;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 30px;
+    background-color: transparent;
     text-shadow: 2px 5px 4px rgba(251, 245, 245, 0.5);
     cursor: pointer;
+    transition: 0.6s;
 }
 
-.div-main form input[type="button"]:active {
+.div-main form input[type="submit"]:active {
     transform: scale(1.2);
     color: gray;
     background-color: rgba(83, 81, 81, 0.333);
 
 }
 
-.div-main form input[type="button"]:hover {
+.div-main form input[type="submit"]:hover {
     transform: scale(1.1);
+    background-color: white;
+    color: black;
 
 
 }
@@ -126,16 +173,17 @@
 a {
     font-size: 25px;
     color: white;
-    padding: 15px;
     font-family: 'Work Sans', sans-serif;
-    margin-top: 5px;
     text-decoration: none;
     transition: 0.3s;
-    margin-top: 20px;
+    margin-top: -20px;
     cursor: pointer;
 }
 
 .div-main form p,
 a:hover {
-    color: blue;
+    color: rgb(101, 253, 179);
+    text-align: center;
+}.erro{
+    display: none;
 }

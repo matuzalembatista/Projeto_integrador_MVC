@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Venda</title>
+</head>
+
+<body>
+    <h2>Editar Venda</h2>
+
+    <form th:object="${venda}" th:action="@{/updatevenda}" method="post">
+        <div>
+            <label for="codVenda">Código da Venda:</label>
+            <input type="hidden" th:field="*{codVenda}" />
+
+            <div>
+                <label for="dataVenda">Data da Venda:</label>
+                <input type="date" th:field="*{dataVenda}" id="dataVenda" />
+
+                <label for="cod_cliente">Código do Cliente:</label>
+                <select th:field="*{cod_cliente}" id="cod_cliente" readonly>
+                    <option th:each="cod_cliente : ${allCod_cliente}" th:value="${cod_cliente}" th:text="${cod_cliente}"
+                        readonly></option>
+                </select>
+            </div>
+
+            <label for="cod_prodProduto">Produto:</label>
+            <select th:field="*{cod_prodProduto}" id="cod_prodProduto" readonly>
+                <option th:each="codProd : ${allCodProdutos}" th:value="${codProd}" th:text="${codProd}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="qteVendida">Quantidade vendida</label>
+            <input type="number" th:field="*{qteVendida}" id="quantidade" placeholder="Quantidade"
+                oninput="calculateTotal()" />
+        </div>
+
+        <div>
+            <label for="precoVenda">Preço de venda:</label>
+            <input type="number" th:field="*{precoVenda}" id="precoVenda" placeholder="Digite o valor do produto"
+                oninput="calculateTotal()" />
+        </div>
+
+        <div>
+            <label>Valor total:</label>
+            <input type="text" id="valorTotal" th:field="*{valorTotal}" />
+        </div>
+       
+        <input type="submit" value="Atualizar venda">
+
+    </form>
+
+    <script th:inline="javascript">
+       function calculateTotal() {
+            var quantity = document.getElementById('quantidade').value;
+            var price = document.getElementById('precoVenda').value;
+            var total = quantity * price;
+            document.getElementById('valorTotal').value = total;
+        }
+       
+    </script>
+
+
+</body>
+
+</html>

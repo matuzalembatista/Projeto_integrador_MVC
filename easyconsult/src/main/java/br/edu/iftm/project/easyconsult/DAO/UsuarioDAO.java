@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import br.edu.iftm.project.easyconsult.Model.User;
 
-
-
-
-
 @Repository
 public class UsuarioDAO {
 
@@ -21,27 +17,24 @@ public class UsuarioDAO {
     }
 
     public void inserirCliente(User cliente) {
-        String sql = "INSERT INTO Clientes (nome, usuario, data_nascimento, senha, confirmeSenha) " +
+        String sql = "INSERT INTO Login (nome, usuario, data_nascimento, senha, senhaEncoded) " +
                 "VALUES (?, ?, ?, ?, ?)";
-     
 
         jdbcTemplate.update(sql,
                 cliente.getNome(),
                 cliente.getUsuario(),
                 cliente.getData_nascimento(),
                 cliente.getSenha(),
-                cliente.getConfirmeSenha()
+                cliente.getSenhaEncoded()
 
         );
 
     }
 
     public boolean usuarioExiste(String usuario) {
-        String query = "SELECT COUNT(*) FROM Clientes WHERE usuario = ?";
+        String query = "SELECT COUNT(*) FROM Login WHERE usuario = ?";
         int count = jdbcTemplate.queryForObject(query, Integer.class, usuario);
         return count > 0;
     }
-
-
 
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/fonts.css">
+
     <title>Cadastro Usuario</title>
 </head>
 
@@ -17,49 +18,36 @@
             <div id="icon">
                 <img src="img/button.png" alt="" width="50px">
             </div>
-            <h1>Easy Consulter</h1>
+            <div id="logo">
+                <img  src="img/Easy.png" alt="" >
+            </div>
+            <p id="message" th:if="${message !=null}" th:text="${message}" class="message"></p>
+           
+
             <div class="div-main">
                 <!-- Thymeleaf started -->
+                <h2>Cadastre-se</h2>
                 <form action="CadastroEasy" method="post" th:object="${user}">
-
-                    <h2>Faça seu cadastro</h2>
-
-                    <div>
-                        <label for="nome">Seu nome</label>
-                        <input type="text" placeholder="name" th:field="*{nome}" required>
-                    </div>
-
-                    <div>
-                        <label for="usuario">Nome de usuario</label>
-                        <input type="text" placeholder="name user" th:field="*{usuario}" required>
-                    </div>
-
-                    <div>
-                        <label for="data_nascimento">Data de nascimento</label>
-                        <input type="date" placeholder="1999/12/12" th:field="*{data_nascimento}" required>
-                    </div>
-
-                    <div>
+                        <label for="nome">Nome</label>
+                        <input type="text"  th:field="*{nome}" required>
+                        <label for="usuario">Usuário</label>
+                        <input id="usuarioCAD" type="text"  th:field="*{usuario}" required>
                         <label for="senha">senha usuario</label>
-                        <input type="number" placeholder="123456" th:field="*{senha}"  required>
-                       
-                    </div>
-                    <div>
+                        <input id="senha" type="password" th:field="*{senha}" maxlength="8" required>
                         <label for="confirmeSenha">Confirme a senha</label>
-                        <input type="number" placeholder="123456" th:field="*{confirmeSenha}" required>
-                    </div>
-               
-                   
-                        <input type="submit" value="Cadastrar">
-                    
-
-                    <p><a href="login.html">Ja possuo cadastro</a></p>
+                        <input id="confirmSenha" type="password"  maxlength="8" required>
+                        <label for="data_nascimento">Data de nascimento</label>
+                        <input type="date"  th:field="*{data_nascimento}" required>
+                        <input id="button" type="submit" value="Cadastrar">
+                        <p><a th:href="RedirecionarLogin">Ja possuo cadastro</a></p>
                 </form>
-
+               
             </div>
         </div>
     </main>
     <script src="script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

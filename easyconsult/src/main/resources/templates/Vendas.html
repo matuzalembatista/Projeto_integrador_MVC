@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background: url("img/peak.gif");
+            color: white;
+            font-size: 20px;
+            font-family: "Quicksand",sans-serif;
+        }p{
+            color: white;
+            font-size: 20px;
+
+        }p:hover{
+            color: coral;
+        }a{
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }input{
+            padding: 15px;
+            font-size: 20px;
+            color: white;
+            border: transparent;
+            background-color: transparent;
+            border-bottom: 2px solid white;
+        }input:focus{
+            outline: none;
+        }input[type="submit"]{
+            border-radius: 20px;
+            border: 2px solid white;
+            margin-top: 10px;
+        }input[type="submit"]:hover{
+            background-color: white;
+            color: greenyellow;
+        }
+    </style>
+    <title>Tela de Vendas</title>
+</head>
+<body>
+    <form th:object="${venda}" th:action="@{/addvenda}" method="post">
+        <div>
+            <div>
+                <label for="dataVenda">Data da Venda:</label>
+                <input type="date" th:field="*{dataVenda}" id="dataVenda" />
+
+                <label for="cod_cliente">Código do Cliente:</label>
+                <select th:field="*{cod_cliente}" id="cod_cliente" onchange="fetchClienteData('cod_cliente')"
+                    placeholder="Código do Cliente">
+                    <option th:each="cod_cliente : ${allCod_cliente}" th:value="${cod_cliente}" th:text="${cod_cliente}"></option>
+                </select>
+
+                
+            </div>
+
+            <label for="cod_prodProduto">Produto:</label>
+            <select th:field="*{cod_prodProduto}" id="cod_prodProduto" onchange="fetchProdutoData('cod_prod')"
+                placeholder="Código do Produto">
+                <option th:each="codProd : ${allCodProdutos}" th:value="${codProd}" th:text="${codProd}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="qteVendida">Quantidade vendida</label>
+            <input type="number" th:field="*{qteVendida}" id="quantidade"  oninput="calculateTotal()" />
+        </div>
+
+        <div>
+            <label for="precoVenda">Preço de venda:</label>
+            <input type="number" th:field="*{precoVenda}" id="precoVenda"  oninput="calculateTotal()" />
+        </div>
+
+        <div>
+            <label>Valor total:</label>
+            <input type="text" id="valorTotal" th:field="*{valorTotal}" readonly />
+        </div>
+
+        <input type="submit" value="Registrar venda">
+        <p><a th:href="@{vendasToList}">ir para lista</a></p>
+    </form>
+
+    <script>
+        function calculateTotal() {
+            var quantity = document.getElementById('quantidade').value;
+            var price = document.getElementById('precoVenda').value;
+            var total = quantity * price;
+            document.getElementById('valorTotal').value = total;
+        }
+
+        function fetchClienteData(field) {
+            var value = document.getElementById(field).value;
+            var url = '/api/cliente?field=' + field + '&value=' + value;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('nomeCliente').value = data.nome;
+                });
+        }
+
+        function fetchProdutoData(field) {
+            var value = document.getElementById(field).value;
+            var url = '/api/produtos/codigos'; // Update the URL to the new endpoint
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var selectCodProd = document.getElementById('cod_prodProduto');
+                    selectCodProd.innerHTML = "";
+                    data.forEach(codProd => {
+                        var option = document.createElement('option');
+                        option.value = codProd;
+                        option.text = codProd;
+                        selectCodProd.add(option);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Lista de Vendas</title>
+    <style>
+        body{
+            background: url("img/peak2.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            font-size: 20px;
+        }p,a{
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+
+        }p:hover{
+            color: coral;
+        }div a {
+            margin-left: 20px;
+            
+            
+        }h2{
+            font-family: 'Quicksand',sans-serif;
+        }tr:nth-of-type(odd) td {
+            text-align: center;
+            padding: 10px;
+            font-weight: 800;
+             background-color: #5a5a5a; /* Cor de fundo para linhas ímpares */
+}
+    </style>
+</head>
+
+<body>
+
+    <h2>Lista de Vendas</h2>
+
+    <table>
+        <thead>
+            <thead>
+                <tr>
+                    <th>Código da Venda</th>
+                    <th>Data da Venda</th>
+                    <th>CPF do Cliente</th>
+                    <th>Nome do Cliente</th>
+                    <th>Código do Produto</th>
+                    <th>Descrição do Produto</th>
+                    <th>Valor Total</th>
+                </tr>
+            </thead>
+        </thead>
+        <tbody th:each="venda : ${vendasList}">
+            <tr>
+                <td th:text="${venda.codVenda}"></td>
+                <td th:text="${venda.dataVenda}"></td>
+                <td th:text="${venda.cpfCliente}"></td>
+                <td th:text="${venda.nomeCliente}"></td>
+                <td th:text="${venda.cod_prodProduto}"></td>
+                <td th:text="${venda.descricao}"></td>
+                <td th:text="${venda.valorTotal}"></td>
+                <td>
+                    <div style="padding: 10px;">
+                        <a th:href="@{/editvenda/{codVenda}(codVenda=${venda.codVenda})}"><img src="img/editar.png" alt="" width="20px"></a>
+                        <a th:href="@{/deletevenda/{codVenda}(codVenda=${venda.codVenda})}"><img src="img/excluir.png" alt="" width="20px"></a>
+                    </div>
+                </td>
+                
+
+            </tr>
+        </tbody>
+    </table>
+    <p><a th:href="@{listToCliente}">Ir para lista de clientes</a></p>
+</body>
+
+</html>
